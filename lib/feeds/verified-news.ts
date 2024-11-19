@@ -6,29 +6,26 @@
 import { InvalidRequestError } from "@atproto/xrpc-server";
 import { QueryParams } from "@atproto/bsky/src/lexicon/types/app/bsky/feed/getFeedSkeleton";
 import { AppContext } from "../config";
-import { Post } from "@skyware/bot";
 
 // max 15 chars
 export const shortname = "verified-news";
 
 export const handler = async (ctx: AppContext, params: QueryParams) => {
   try {
-    const posts: Post[] = [];
+    const posts: any[] = [];
     let lastCursor;
+
     while (posts.length < (params.limit || 100)) {
-      const feed = await (
-        await ctx.bot.getList(
-          "at://did:plc:kkf4naxqmweop7dv4l2iqqf5/app.bsky.graph.list/3jzmo456b6j2t"
-        )
-      ).getFeed({
-        limit: params.limit,
+      const feed = await ctx.agent.app.bsky.feed.getListFeed({
+        list: "at://did:plc:kkf4naxqmweop7dv4l2iqqf5/app.bsky.graph.list/3jzmo456b6j2t",
+        limit: params.limit ?? 100,
         cursor: lastCursor || params.cursor,
       });
 
-      lastCursor = feed.cursor;
+      lastCursor = feed.data.cursor;
 
-      for (const post of feed.posts) {
-        if (post.embed?.isExternal && !post.replyRef) {
+      for (const post of feed.data.feed) {
+        if (post.post.embed?.external && !post.reply) {
           posts.push(post);
         }
       }

@@ -1,8 +1,7 @@
-import { Bot } from "@skyware/bot";
-
+import { AtpAgent } from "@atproto/api";
 export type AppContext = {
   cfg: Config;
-  bot: Bot;
+  agent: AtpAgent;
 };
 
 export type Config = {

@@ -10,7 +10,9 @@ import apicache from "apicache";
 import { wellKnown } from "./well-known";
 import describeGenerator from "./describe-generator";
 import feedGenerator from "./feed-generator";
-import { Bot } from "@skyware/bot";
+import { AtpAgent } from "@atproto/api";
+
+const agent = new AtpAgent({ service: "https://bsky.app" });
 
 export async function app() {
   const ctx = {
@@ -21,13 +23,8 @@ export async function app() {
         process.env.PUBLISHER_DID ?? "did:plc:kkf4naxqmweop7dv4l2iqqf5",
       cacheTTL: process.env.CACHE_TTL ?? "1 minute",
     },
-    bot: new Bot(),
+    agent,
   };
-
-  await ctx.bot.login({
-    identifier: process.env.BSKY_USERNAME!,
-    password: process.env.BSKY_PASSWORD!,
-  });
 
   const server = createServer({
     validateResponse: true,

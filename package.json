@@ -14,7 +14,6 @@
     "@atproto/lexicon": "^0.4.3",
     "@atproto/xrpc-server": "^0.7.3",
     "@fastify/middie": "^9.0.2",
-    "@skyware/bot": "^0.3.7",
     "apicache": "^1.6.3",
     "dotenv": "^16.4.5",
     "fastify": "^5.1.0",
