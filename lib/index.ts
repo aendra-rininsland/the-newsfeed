@@ -24,10 +24,10 @@ export async function app() {
     bot: new Bot(),
   };
 
-  // await ctx.bot.login({
-  //   identifier: process.env.BSKY_USERNAME!,
-  //   password: process.env.BSKY_PASSWORD!,
-  // });
+  await ctx.bot.login({
+    identifier: process.env.BSKY_USERNAME!,
+    password: process.env.BSKY_PASSWORD!,
+  });
 
   const server = createServer({
     validateResponse: true,
