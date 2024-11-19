@@ -15,7 +15,7 @@ import { Bot } from "@skyware/bot";
 export async function app() {
   const ctx = {
     cfg: {
-      port: Number(process.env.PORT) ?? 3000,
+      port: Number(process.env.PORT ?? 3000),
       hostname: process.env.HOSTNAME ?? "localhost",
       publisherDid:
         process.env.PUBLISHER_DID ?? "did:plc:kkf4naxqmweop7dv4l2iqqf5",

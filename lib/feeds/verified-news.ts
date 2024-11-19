@@ -15,7 +15,7 @@ export const handler = async (ctx: AppContext, params: QueryParams) => {
   try {
     const posts: Post[] = [];
     let lastCursor;
-    while (posts.length < params.limit || 100) {
+    while (posts.length < (params.limit || 100)) {
       const feed = await (
         await ctx.bot.getList(
           "at://did:plc:kkf4naxqmweop7dv4l2iqqf5/app.bsky.graph.list/3jzmo456b6j2t"
