@@ -12,7 +12,7 @@ import describeGenerator from "./describe-generator";
 import feedGenerator from "./feed-generator";
 import { AtpAgent } from "@atproto/api";
 
-const agent = new AtpAgent({ service: "https://bsky.app" });
+const agent = new AtpAgent({ service: "https://api.bsky.app" });
 
 export async function app() {
   const ctx = {
