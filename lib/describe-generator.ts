@@ -15,6 +15,7 @@ export default function (server: Server, ctx: AppContext) {
 
     return {
       encoding: "application/json",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
       body: {
         did: ctx.cfg.publisherDid,
         feeds,
